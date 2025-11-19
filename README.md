@@ -1,0 +1,2 @@
+# koreajeju
+ㄅㄅㄐ
