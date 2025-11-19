@@ -99,7 +99,8 @@
                             <dd class="text-gray-700">位於涯月海岸道路核心區，所有涯月名店都在附近，房間均為海景第一排。</dd>
                         </div>
                         <div>
-                            <a href="https://map.naver.com/p/search/씨스테이호텔" target="_blank" rel="noopener noreferrer" class="inline-block bg-green-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-600 transition-colors">
+                            <!-- Updated Button with JS Handler -->
+                            <a href="#" onclick="handleMapClick(event, 'https://map.naver.com/p/search/씨스테이호텔')" class="inline-block bg-green-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-600 transition-colors">
                                 🗺️ Naver Map 飯店位置
                             </a>
                         </div>
@@ -335,10 +336,51 @@
             ]
         };
 
+        /**
+         * Handles Naver Map Clicks
+         * Tries to open the App via Custom Scheme (nmap://) on mobile.
+         * Fallbacks to Web URL (https://) on Desktop or if App fails.
+         */
+        function handleMapClick(e, webUrl) {
+            e.preventDefault();
+            
+            const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
+
+            if (isMobile) {
+                // Extract the query part from the Web URL
+                // Expected format: https://map.naver.com/p/search/{QUERY}
+                try {
+                    const parts = webUrl.split('/search/');
+                    if (parts.length > 1) {
+                        const query = parts[1]; // Query is likely encoded already
+                        // Naver Map App Scheme
+                        const appUrl = `nmap://search?query=${query}&appname=JejuItinerary`;
+                        
+                        // Attempt to open App
+                        window.location.href = appUrl;
+
+                        // Fallback logic: If app doesn't open, the user stays on page.
+                        // We can give them a gentle nudge to the web version after a timeout.
+                        // Note: Modern browsers might block this if the page didn't change.
+                        setTimeout(() => {
+                            window.location.href = webUrl;
+                        }, 1500);
+                        return;
+                    }
+                } catch (error) {
+                    console.error("URL parsing error:", error);
+                }
+            }
+            
+            // Desktop or Parse Error -> Open Web Version in New Tab
+            window.open(webUrl, '_blank');
+        }
+
         function createItineraryCard(item) {
             const hasMap = item.map;
+            // Updated Button: Uses handleMapClick for smarter routing
             const mapButton = hasMap
-                ? `<a href="${item.map}" target="_blank" rel="noopener noreferrer" class="inline-block bg-green-500 text-white font-bold py-2 px-3 rounded-lg hover:bg-green-600 transition-colors text-sm">🗺️ Naver Map</a>`
+                ? `<a href="#" onclick="handleMapClick(event, '${item.map}')" class="inline-block bg-green-500 text-white font-bold py-2 px-3 rounded-lg hover:bg-green-600 transition-colors text-sm">🗺️ Naver Map</a>`
                 : '';
 
             return `
