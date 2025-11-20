@@ -20,6 +20,13 @@
         .itinerary-card {
             @apply bg-white rounded-xl shadow-lg overflow-hidden transition-all duration-300 hover:shadow-xl;
         }
+        /* Alert styles */
+        .tip-box-normal {
+            @apply bg-orange-50 border-orange-100 text-gray-700;
+        }
+        .tip-box-warning {
+            @apply bg-red-50 border-red-100 text-red-800;
+        }
     </style>
 </head>
 <body class="text-gray-800">
@@ -33,7 +40,7 @@
                 <div class="relative mt-2 md:mt-0">
                     <select id="navigation-select" class="w-full md:w-auto appearance-none px-4 py-2 text-base font-medium text-gray-700 bg-white rounded-lg shadow-md border border-gray-300 focus:outline-none focus:ring-2 focus:ring-orange-500 focus:border-orange-500">
                         <option value="all">全部顯示</option>
-                        <option value="#section-tips">行前提醒</option>
+                        <option value="#section-tips">行前提醒 & ⚠️ 自駕須知</option>
                         <option value="#section-day1">Day 1 (11/30)</option>
                         <option value="#section-day2">Day 2 (12/1)</option>
                         <option value="#section-day3">Day 3 (12/2)</option>
@@ -54,57 +61,43 @@
         <section id="section-tips" class="mb-12 pt-16 -mt-16">
             <h2 class="text-3xl font-bold text-gray-900 mb-6 border-b-2 border-orange-200 pb-2">⚠️ 在地人行前貼心提醒</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="bg-white p-6 rounded-xl shadow-lg">
+                <!-- General Tips -->
+                <div class="bg-white p-6 rounded-xl shadow-lg border-l-4 border-orange-400">
+                    <h3 class="text-xl font-bold text-orange-700 mb-4 flex items-center">
+                        <span class="text-2xl mr-2">🌡️</span> 天氣與裝備
+                    </h3>
                     <ul class="space-y-4">
                         <li class="flex items-start">
-                            <span class="text-2xl mr-3">🌡️</span>
-                            <div><strong class="text-orange-700">天氣 (11/30-12/03)</strong>：濟州初冬，氣溫約 5°C - 12°C。**風非常大**，體感溫度更低。請務必攜帶防風外套、羽絨衣、毛帽和暖暖包。</div>
+                            <div><strong class="text-gray-900">天氣 (11/30-12/03)</strong>：氣溫 5°C - 12°C，但<strong class="text-red-600">風非常大</strong>，體感溫度接近 0 度。必備防風外套、羽絨衣、毛帽、手套。</div>
                         </li>
                         <li class="flex items-start">
-                            <span class="text-2xl mr-3">🌇</span>
-                            <div><strong class="text-orange-700">日落時間</strong>：冬季日落早（約 17:20），郊區天黑後路燈很少，建議 17:00 前結束戶外景點。</div>
+                            <div><strong class="text-gray-900">關鍵日落時間</strong>：<strong class="text-red-600">17:25 - 17:30</strong>。太陽一下山天色會「瞬間」全黑，郊區無路燈，請儘量在 17:00 前結束戶外行程。</div>
                         </li>
                         <li class="flex items-start">
-                            <span class="text-2xl mr-3">🗺️</span>
-                            <div><strong class="text-orange-700">導航 App</strong>：Google Maps 在韓國無法導航。請務必下載 **Naver Map** 或 **Kakao Map**。您可以使用本文件中的「韓文名稱」或「電話號碼」來搜尋。</div>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-2xl mr-3">🚗</span>
-                            <div><strong class="text-orange-700">租車</strong>：請備妥「**護照、台灣駕照正本、有效國際駕照**」，三者缺一不可。</div>
-                        </li>
-                        <li class="flex items-start">
-                            <span class="text-2xl mr-3">🔌</span>
-                            <div><strong class="text-orange-700">電壓</strong>：韓國電壓為 220V，插座為兩腳圓形（德規），請攜帶轉接頭。</div>
+                            <div><strong class="text-gray-900">導航</strong>：Google Maps 無法使用。請下載 <strong>Naver Map</strong> 並善用「電話號碼」搜尋。</div>
                         </li>
                     </ul>
                 </div>
                 
-                <div class="bg-white p-6 rounded-xl shadow-lg">
-                    <h3 class="text-2xl font-semibold text-gray-900 mb-4">🏨 您的住宿資訊</h3>
-                    <dl class="space-y-3">
-                        <div>
-                            <dt class="font-semibold text-orange-700">飯店名稱</dt>
-                            <dd class="text-gray-700">Sea Stay Hotel (씨스테이호텔)</dd>
-                        </div>
-                        <div>
-                            <dt class="font-semibold text-orange-700">地址</dt>
-                            <dd class="text-gray-700">제주시 애월읍 애월해안로 255</dd>
-                        </div>
-                        <div>
-                            <dt class="font-semibold text-orange-700">電話 (導航用)</dt>
-                            <dd class="text-gray-700">064-799-3660</dd>
-                        </div>
-                        <div>
-                            <dt class="font-semibold text-orange-700">特色</dt>
-                            <dd class="text-gray-700">位於涯月海岸道路核心區，所有涯月名店都在附近，房間均為海景第一排。</dd>
-                        </div>
-                        <div>
-                            <!-- Updated Button with JS Handler -->
-                            <a href="#" onclick="handleMapClick(event, 'https://map.naver.com/p/search/씨스테이호텔')" class="inline-block bg-green-500 text-white font-bold py-2 px-4 rounded-lg hover:bg-green-600 transition-colors">
-                                🗺️ Naver Map 飯店位置
-                            </a>
-                        </div>
-                    </dl>
+                <!-- Driving Safety (New) -->
+                <div class="bg-red-50 p-6 rounded-xl shadow-lg border-l-4 border-red-500">
+                    <h3 class="text-xl font-bold text-red-700 mb-4 flex items-center">
+                        <span class="text-2xl mr-2">🚗</span> 自駕保命規則 (必讀)
+                    </h3>
+                    <ul class="space-y-3 text-gray-800">
+                        <li class="flex items-start">
+                            <span class="mr-2">🛑</span>
+                            <div><strong>學校區域 (School Zone) = 絕對 30km/h</strong><br>看到路面暗紅色塗裝，務必減速至 30 以下。罰單非常貴且嚴格。</div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2">🛑</span>
+                            <div><strong>紅燈右轉 (Right Turn on Red)</strong><br>紅燈右轉前，車輛必須<strong>完全煞停 (Full Stop)</strong>。確認斑馬線無人後才能轉。有人絕對不能轉。</div>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="mr-2">🔦</span>
+                            <div><strong>夜間取車</strong><br>第一天取車時天已全黑。請開手機手電筒錄影驗車身舊傷。上路前先在場內適應煞車靈敏度。</div>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </section>
@@ -157,7 +150,7 @@
                     korean: "地點：濟州機場 (CJU)",
                     address: "接駁：Gate 5 對面「Rent-a-car House」",
                     map: "https://map.naver.com/p/search/제주국제공항",
-                    tip: "落地後盡快出關，尋找您租車公司的接駁巴士。<br>💡 提醒：請再次確認接駁車最晚營運時間。"
+                    tip: "🔦 <strong>夜間取車注意</strong>：天色已全黑。取車時請務必開啟手機手電筒，仔細錄影車身舊傷。剛上路請先在場內繞兩圈，適應煞車和油門靈敏度。"
                 },
                 {
                     time: "19:30",
@@ -165,7 +158,7 @@
                     korean: "숙성도 노형본관",
                     address: "제주시 원노형로 41",
                     map: "https://map.naver.com/p/search/숙성도%20노형본관",
-                    tip: "您的預約店家。務必準時抵達。<br>💡 必點：您CSV中提到的「960 熟成帶骨里肌 (뼈등심)」是限量招牌。"
+                    tip: "💡 <strong>避雷指南</strong>：蓮洞商圈單行道多且極難停車！建議直接導航至附近的「公有停車場 (Public Parking Lot)」，不要在巷弄裡空轉浪費時間。<br>🍖 必點：960 熟成帶骨里肌。"
                 },
                 {
                     time: "21:30",
@@ -199,7 +192,7 @@
                     korean: "창꼼바위",
                     address: "제주시 조천읍 북촌리 403-9",
                     map: "https://map.naver.com/p/search/창꼼바위",
-                    tip: "《非常律師》景點。岩洞旁的停車位不多。<br>💡 提醒：海風極大，請戴好帽子和圍巾。"
+                    tip: "⚠️ <strong>安全注意</strong>：這裡是由凹凸不平的火山岩組成的海岸，且沒有護欄。拍照時請務必踩穩，不要穿容易滑的鞋子。"
                 },
                 {
                     time: "14:30",
@@ -215,7 +208,7 @@
                     korean: "섭지코지",
                     address: "서귀포시 성산읍 섭지코지로 107",
                     map: "https://map.naver.com/p/search/섭지코지",
-                    tip: "經典韓劇景點。走到燈塔或糖果屋即可折返。<br>💡 提醒：這裡非常空曠，風超級大。建議在此看 17:20 左右的日落，景色絕美。"
+                    tip: "⚠️ <strong>日落警示 (Golden Hour)</strong>：17:25 日落，海邊風勢會瞬間變大且氣溫驟降，請務必穿防風厚外套。回程天色全黑請小心。<br>💡 備註：糖果屋受海風侵蝕外觀較舊是正常的，重點是懸崖海景。"
                 },
                 {
                     time: "18:30",
@@ -257,7 +250,7 @@
                     korean: "9.81파크 제주",
                     address: "제주시 애월읍 천덕로 880-24",
                     map: "https://map.naver.com/p/search/9.81파크",
-                    tip: "就在飯店後方的山坡上，車程僅 15 分鐘。<br>💡 必備：**一定要穿包鞋** (禁拖鞋/涼鞋)。務必下載「9.81 Park App」接收賽車影片。"
+                    tip: "❄️ <strong>極速體驗注意</strong>：戶外賽車體感近 0 度，<strong>手套必備</strong>！務必穿包鞋(禁拖鞋)。<br>❌ <strong>禁令</strong>：駕駛中嚴禁拿手機拍攝。請下載官方 App 接收高畫質比賽影片。"
                 },
                 {
                     time: "15:30",
@@ -273,7 +266,7 @@
                     korean: "신라면세점 제주점",
                     address: "제주시 노연로 69",
                     map: "https://map.naver.com/p/search/신라면세점%20제주점",
-                    tip: "進入濟州市區（蓮洞商圈）。<br>💡 提醒：**務必攜帶護照** 與 **回程航班資訊**。"
+                    tip: "⚠️ <strong>提貨規則</strong>：購買「國際品牌」商品不能當場帶走，必須在回程當天於<strong>機場管制區內</strong>的提貨處領取。<br>📋 必備：護照、回程航班資訊。"
                 },
                 {
                     time: "19:00",
@@ -299,7 +292,7 @@
                     korean: "해지개",
                     address: "제주시 애월읍 애월북서길 52",
                     map: "https://map.naver.com/p/search/해지개",
-                    tip: "韓屋造型的海景咖啡廳，離飯店僅 2 分鐘車程。<br>💡 必點：黑色起司麵包、橘子蛋糕。<br>💡 注意：**開進去的路非常窄**，會車困難，建議停在大馬路停車場再走進去。"
+                    tip: "⚠️ <strong>路況警告</strong>：進去的路段是著名的「考驗技術窄路」！<br>✅ <strong>強烈建議</strong>：若對右駕/窄路會車沒信心，請停在大馬路邊合法的停車格，步行 5-10 分鐘進去，心情會輕鬆很多。"
                 },
                 {
                     time: "14:30",
@@ -307,7 +300,7 @@
                     korean: "롯데면세점 제주점",
                     address: "제주시 도령로 83",
                     map: "https://map.naver.com/p/search/롯데면세점%20제주점",
-                    tip: "最後補貨時間，位於市區，離機場很近。"
+                    tip: "最後補貨時間。請注意，新濟州往機場方向 16:30 後嚴重塞車。"
                 },
                 {
                     time: "16:30",
@@ -315,7 +308,7 @@
                     korean: "原租車公司車庫",
                     address: "濟州機場附近 (請依業者指引)",
                     map: "https://map.naver.com/p/search/제주국제공항",
-                    tip: "濟州市區下午 17:00 後易塞車，請務必準時或提早還車。定位先設定為機場，請依照您的租車公司指示前往。"
+                    tip: "⚠️ <strong>高風險時段</strong>：建議 <strong>16:00</strong> 就要離開市區前往還車，預留 30 分鐘以上的塞車緩衝。還車前記得「加滿油」。"
                 },
                 {
                     time: "17:30",
@@ -382,6 +375,12 @@
             const mapButton = hasMap
                 ? `<a href="#" onclick="handleMapClick(event, '${item.map}')" class="inline-block bg-green-500 text-white font-bold py-2 px-3 rounded-lg hover:bg-green-600 transition-colors text-sm">🗺️ Naver Map</a>`
                 : '';
+            
+            // Check if tip is a warning (contains ⚠️ or ❌ or 避雷) to apply alert styles
+            const isWarning = item.tip.includes('⚠️') || item.tip.includes('❌') || item.tip.includes('避雷');
+            const tipBoxClass = isWarning ? 'tip-box-warning' : 'tip-box-normal';
+            const tipIcon = isWarning ? '⚠️' : '💡';
+            const tipTitle = isWarning ? '重要提醒 / 避雷' : '在地人建議';
 
             return `
                 <div class="itinerary-card">
@@ -398,15 +397,15 @@
                             <p class="font-mono">${item.address}</p>
                         </div>
                     </div>
-                    <div class="bg-gray-50 px-5 py-3 border-t border-gray-100">
+                    <div class="${tipBoxClass} px-5 py-3 border-t">
                         <div class="flex justify-between items-center">
-                            <h4 class="font-semibold text-orange-700 text-sm flex items-center">
-                                <span class="text-xl mr-1">💡</span> 在地人建議
+                            <h4 class="font-semibold text-sm flex items-center ${isWarning ? 'text-red-700' : 'text-orange-700'}">
+                                <span class="text-xl mr-1">${tipIcon}</span> ${tipTitle}
                             </h4>
                             ${mapButton}
                         </div>
-                        <div class="mt-3 pt-3 border-t border-gray-200">
-                            <p class="text-gray-700 text-sm">${item.tip}</p>
+                        <div class="mt-3 pt-3 border-t ${isWarning ? 'border-red-200' : 'border-orange-200'}">
+                            <p class="text-sm ${isWarning ? 'text-red-800 font-medium' : 'text-gray-700'}">${item.tip}</p>
                         </div>
                     </div>
                 </div>
